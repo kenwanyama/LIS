@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laboratory Information System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Laboratory Information System</h1>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <h2>Login</h2>
+        <p class="hint">Hint: admin / admin123</p>
+        <p class="hint">Hint: super / super123</p>
+        <p class="hint">Hint: tech / tech123</p>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="loginError"></p>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none;">
+
+    <p id="welcome"></p>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" class="panel" style="display:none;">
+        <h3>👤 User Management</h3>
+
+        <button onclick="toggleSection('createUserBox')">➕ Create User</button>
+        <button onclick="loadAllUsers()">👥 View All Users</button>
+
+        <div id="createUserBox" style="display:none; margin-top:10px;">
+            <input type="text" id="newName" placeholder="Username">
+            <input type="password" id="newPassword" placeholder="Password">
+            <select id="newRole">
+                <option value="Admin">Admin</option>
+                <option value="Technician">Technician</option>
+                <option value="Supervisor">Supervisor</option>
+            </select>
+            <button onclick="createUser()">✔ Submit</button>
+    </div>
+
+    <div id="allUsersList" style="margin-top:10px;"></div>
+</div>
+
+    <!-- PATIENT GENERATION -->
+    <div class="panel">
+        <h3>Patients</h3>
+        <button class="icon-btn" onclick="generateAndLoadPatients()" title="Generate New Patients">⟳</button>
+        <div id="patientList"></div>
+    </div>
+
+    <div id="techPanel" class="panel" style="display:none;">
+        <h3>🔬 Technician Workspace</h3>
+        <p>Use the patient list below to create entries, then process them from the entries table.</p>
+    </div>
+
+    <div id="supervisorPanel" class="panel" style="display:none;">
+        <h3>✅ Supervisor Workspace</h3>
+        <p>Review processed entries below and verify results.</p>
+    </div>
+
+        <div class="panel">
+    <h3>Create Entry Manually</h3>
+    <table>
+        <tr>
+            <td>Patient ID:</td>
+            <td>
+                <input type="text" id="manualPatientId" placeholder="e.g. P55" oninput="lookupPatient()">
+            </td>
+        </tr>
+        <tr>
+            <td>Patient Name:</td>
+            <td><input type="text" id="manualPatientName" placeholder="Auto-filled" readonly></td>
+        </tr>
+        <tr>
+            <td>Test Name:</td>
+            <td><input type="text" id="manualTestName" placeholder="Auto-filled" readonly></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="createManualEntry()">Create Entry</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+    <!-- ENTRY LIST -->
+    <div class="panel">
+        <h3>Entries</h3>
+        <div id="entryList"></div>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
