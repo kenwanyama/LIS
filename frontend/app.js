@@ -1,4 +1,4 @@
-const API = "http://10.7.241.22:8000";
+const API = "lis-peach.vercel.app";
 
 let token = null;
 let currentRole = null;
